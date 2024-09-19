@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian CODM</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembelian CODM</h2>
+        <form id="purchase-form">
+            <label for="id-space">ID :</label>
+            <input type="text" id="id-space" name="id-space" placeholder="Masukkan ID" required>
+            
+            <label for="cp-amount">Pilih Jumlah CP:</label>
+            <select id="cp-amount" name="cp-amount" required>
+                <option value="">--Pilih Jumlah CP--</option>
+                <option value="31 CP">31 CP - Rp. 7.000</option>
+                <option value="63 CP">63 CP - Rp. 12.000</option>
+                <option value="128 CP">128 CP - Rp. 22.000</option>
+                <option value="321 CP">321 CP - Rp. 49.000</option>
+                <option value="645 CP">645 CP - Rp. 95.000</option>
+                <option value="800 CP">800 CP - Rp. 114.000</option>
+                <option value="1.373 CP">1.373 CP - Rp. 185.000</option>
+            </select>
+            
+            <button type="button" onclick="sendWhatsAppMessage()">Kirim ke WhatsApp</button>
+        </form>
+        
+        <script>
+            function sendWhatsAppMessage() {
+                const idSpace = document.getElementById('id-space').value;
+                const cpAmount = document.getElementById('cp-amount').value;
+                
+                if (!idSpace || !cpAmount) {
+                    alert('Harap isi semua bidang.');
+                    return;
+                }
+
+                const baseUrl = 'https://wa.me/081538769551';
+                const message = `Pembelian Call of Duty Mobile\n\nID Space: ${idSpace}\nJumlah CP: ${cpAmount}`;
+                const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+
+                window.open(url, '_blank');
+            }
+        </script>
+    </div>
+</body>
+</html>

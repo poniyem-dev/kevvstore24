@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Farlight 84</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembelian Farlight 84</h2>
+        <form id="purchase-form">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" placeholder="Masukkan ID" required>
+            
+            <label for="diamond-amount">Pilih Jumlah Diamond:</label>
+            <select id="diamond-amount" name="diamond-amount" required>
+                <option value="">--Pilih Jumlah Diamond--</option>
+                <option value="10 Diamond">10 Diamond - Rp. 3.500</option>
+                <option value="20 Diamond">20 Diamond - Rp. 5.000</option>
+                <option value="30 Diamond">30 Diamond - Rp. 7.500</option>
+                <option value="40 Diamond">40 Diamond - Rp. 9.000</option>
+                <option value="50 Diamond">50 Diamond - Rp. 11.000</option>
+                <option value="60 Diamond">60 Diamond - Rp. 13.500</option>
+                <option value="80 Diamond">80 Diamond - Rp. 16.000</option>
+                <option value="100 Diamond">100 Diamond - Rp. 20.000</option>
+                <option value="165 Diamond">165 Diamond - Rp. 29.000</option>
+                <option value="220 Diamond">220 Diamond - Rp. 37.000</option>
+                <option value="330 Diamond">330 Diamond - Rp. 52.000</option>
+                <option value="880 Diamond">880 Diamond - Rp. 130.000</option>
+                <option value="2.240 Diamond">2.240 Diamond - Rp. 325.000</option>
+            </select>
+            
+            <button type="button" onclick="sendWhatsAppMessage()">Kirim ke WhatsApp</button>
+        </form>
+        
+        <script>
+            function sendWhatsAppMessage() {
+                const id = document.getElementById('id').value;
+                const diamondAmount = document.getElementById('diamond-amount').value;
+                
+                if (!id || !diamondAmount) {
+                    alert('Harap isi semua bidang.');
+                    return;
+                }
+
+                const baseUrl = 'https://wa.me/081538769551';
+                const message = `Pembelian Farlight 84\n\nID: ${id}\nJumlah Diamond: ${diamondAmount}`;
+                const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+
+                window.open(url, '_blank');
+            }
+        </script>
+    </div>
+</body>
+</html>

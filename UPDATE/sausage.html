@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Sausage Man</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembelian Sausage Man</h2>
+        <form id="purchase-form">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" placeholder="Masukkan ID" required>
+            
+            <label for="currency-amount">Pilih Jumlah C:</label>
+            <select id="currency-amount" name="currency-amount" required>
+                <option value="">--Pilih Jumlah C--</option>
+                <option value="60 C">60 C - Rp. 20.000</option>
+                <option value="180 C">180 C - Rp. 50.000</option>
+                <option value="300 C">300 C - Rp. 90.000</option>
+                <option value="680 C">680 C - Rp. 160.000</option>
+                <option value="1.280 C">1.280 C - Rp. 310.000</option>
+                <option value="1.980 C">1.980 C - Rp. 460.000</option>
+                <option value="3.280 C">3.280 C - Rp. 780.000</option>
+            </select>
+            
+            <button type="button" onclick="sendWhatsAppMessage()">Kirim ke WhatsApp</button>
+        </form>
+        
+        <script>
+            function sendWhatsAppMessage() {
+                const id = document.getElementById('id').value;
+                const currencyAmount = document.getElementById('currency-amount').value;
+                
+                if (!id || !currencyAmount) {
+                    alert('Harap isi semua bidang.');
+                    return;
+                }
+
+                const baseUrl = 'https://wa.me/081538769551';
+                const message = `Pembelian Sausage Man\n\nID: ${id}\nJumlah C: ${currencyAmount}`;
+                const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+
+                window.open(url, '_blank');
+            }
+        </script>
+    </div>
+</body>
+</html>

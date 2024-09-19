@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Blood Strike</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembelian Blood Strike</h2>
+        <form id="purchase-form">
+            <label for="id">ID:</label>
+            <input type="text" id="id" name="id" placeholder="Masukkan ID" required>
+            
+            <label for="purchase-type">Pilih Membership atau Top-up:</label>
+            <select id="purchase-type" name="purchase-type" required>
+                <option value="">--Pilih Membership atau Gold--</option>
+                <option value="Strike Pass Elite">Strike Pass Elite - Rp. 60.000</option>
+                <option value="Strike Pass Premium">Strike Pass Premium - Rp. 125.000</option>
+                <option value="100 Gold">100 Gold - Rp. 20.000</option>
+                <option value="300 Gold">300 Gold - Rp. 50.000</option>
+                <option value="500 Gold">500 Gold - Rp. 80.000</option>
+                <option value="1.000 Gold">1.000 Gold - Rp. 150.000</option>
+                <option value="2.000 Gold">2.000 Gold - Rp. 300.000</option>
+            </select>
+            
+            <button type="button" onclick="sendWhatsAppMessage()">Kirim ke WhatsApp</button>
+        </form>
+        
+        <script>
+            function sendWhatsAppMessage() {
+                const id = document.getElementById('id').value;
+                const purchaseType = document.getElementById('purchase-type').value;
+                
+                if (!id || !purchaseType) {
+                    alert('Harap isi semua bidang.');
+                    return;
+                }
+
+                const baseUrl = 'https://wa.me/081538769551';
+                const message = `Pembelian Blood Strike\n\nID: ${id}\nPilihan: ${purchaseType}`;
+                const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+
+                window.open(url, '_blank');
+            }
+        </script>
+    </div>
+</body>
+</html>

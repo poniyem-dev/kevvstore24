@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Clash Of Clans</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembelian Clash Of Clans</h2>
+        <form id="purchase-form">
+            <label for="id">Nama Akun :</label>
+            <input type="text" id="id" name="id" placeholder="Masukkan Nama Akun" required>
+            
+            <label for="item-amount">Pilih Membership atau Gems:</label>
+            <select id="item-amount" name="item-amount" required>
+                <option value="">--Pilih Membership atau Gems--</option>
+                <option value="Gold Pass">Gold Pass - Rp. 125.000</option>
+                <option value="88 Gems">88 Gems - Rp. 20.000</option>
+                <option value="550 Gems">550 Gems - Rp. 80.000</option>
+                <option value="1.320 Gems">1.320 Gems - Rp. 150.000</option>
+                <option value="2.750 Gems">2.750 Gems - Rp. 295.000</option>
+            </select>
+            
+            <button type="button" onclick="sendWhatsAppMessage()">Kirim ke WhatsApp</button>
+        </form>
+        
+        <script>
+            function sendWhatsAppMessage() {
+                const id = document.getElementById('id').value;
+                const itemAmount = document.getElementById('item-amount').value;
+                
+                if (!id || !itemAmount) {
+                    alert('Harap isi semua bidang.');
+                    return;
+                }
+
+                const baseUrl = 'https://wa.me/081538769551';
+                const message = `Pembelian Clash Of Clans\n\nNama: ${id}\nPilihan: ${itemAmount}`;
+                const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+
+                window.open(url, '_blank');
+            }
+        </script>
+    </div>
+</body>
+</html>

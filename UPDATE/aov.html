@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Arena Of Valor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembelian Arena Of Valor</h2>
+        <form id="purchase-form">
+            <label for="id-space">ID :</label>
+            <input type="text" id="id-space" name="id-space" placeholder="Masukkan ID" required>
+            
+            <label for="voucher-amount">Pilih Jumlah Voucher:</label>
+            <select id="voucher-amount" name="voucher-amount" required>
+                <option value="">--Pilih Jumlah Voucher--</option>
+                <option value="40 Voucher">40 Voucher - Rp. 15.000</option>
+                <option value="90 Voucher">90 Voucher - Rp. 28.000</option>
+                <option value="230 Voucher">230 Voucher - Rp. 58.000</option>
+                <option value="470 Voucher">470 Voucher - Rp. 115.000</option>
+                <option value="950 Voucher">950 Voucher - Rp. 220.000</option>
+            </select>
+            
+            <button type="button" onclick="sendWhatsAppMessage()">Kirim ke WhatsApp</button>
+        </form>
+        
+        <script>
+            function sendWhatsAppMessage() {
+                const idSpace = document.getElementById('id-space').value;
+                const voucherAmount = document.getElementById('voucher-amount').value;
+                
+                if (!idSpace || !voucherAmount) {
+                    alert('Harap isi semua bidang.');
+                    return;
+                }
+
+                const baseUrl = 'https://wa.me/081538769551';
+                const message = `Pembelian Arena Of Valor\n\nID : ${idSpace}\nJumlah Voucher: ${voucherAmount}`;
+                const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+
+                window.open(url, '_blank');
+            }
+        </script>
+    </div>
+</body>
+</html>

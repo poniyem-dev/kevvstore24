@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Point Blank</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            border-radius: 10px;
+        }
+        h2 {
+            text-align: center;
+        }
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+        input, select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Form Pembelian Point Blank</h2>
+        <form id="purchaseForm" onsubmit="sendToWhatsApp(); return false;">
+            <label for="playerId">Jumlah Beli</label>
+            <input type="text" id="playerId" name="playerId" required placeholder="Jumlah Beli">
+
+            <label for="amount">Jumlah Top-Up</label>
+            <select id="amount" name="amount" required>
+                <option value="1.200 PB Cash Rp. 15.000">1.200 PB Cash Rp. 15.000</option>
+                <option value="2.400 PB Cash Rp. 25.000">2.400 PB Cash Rp. 25.000</option>
+                <option value="6.000 PB Cash Rp. 55.000">6.000 PB Cash Rp. 55.000</option>
+                <option value="12.000 PB Cash Rp. 110.000">12.000 PB Cash Rp. 110.000</option>
+                <option value="24.000 PB Cash Rp. 210.000">24.000 PB Cash Rp. 210.000</option>
+                <option value="36.000 PB Cash Rp. 310.000">36.000 PB Cash Rp. 310.000</option>
+            </select>
+
+            <button type="submit">Beli Sekarang</button>
+        </form>
+    </div>
+
+    <script>
+        function sendToWhatsApp() {
+            var playerId = document.getElementById("playerId").value;
+            var amount = document.getElementById("amount").value;
+
+            var message = "Pembelian Point Blank\nJumlah Beli: " + playerId + "\nJumlah: " + amount;
+            var whatsappURL = "https://wa.me/6281538769551?text=" + encodeURIComponent(message);
+
+            window.open(whatsappURL, "_blank");
+        }
+    </script>
+</body>
+</html>

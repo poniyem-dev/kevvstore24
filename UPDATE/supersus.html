@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Super Sus</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        label {
+            display: block;
+            margin-bottom: 10px;
+        }
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembelian Super Sus</h2>
+        <form id="purchase-form">
+            <label for="id-space">ID Space:</label>
+            <input type="text" id="id-space" name="id-space" required>
+            
+            <label for="item-type">Pilih Item atau Top-up:</label>
+            <select id="item-type" name="item-type" onchange="updateOptions()" required>
+                <option value="">--Pilih Item atau Top-up--</option>
+                <option value="weekly-card">Weekly Card - Rp. 20.000</option>
+                <option value="monthly-card">Monthly Card - Rp. 150.000</option>
+                <option value="super-pass">Super Pass - Rp. 85.000</option>
+                <option value="super-vip-pass">Super VIP Pass - Rp. 180.000</option>
+                <option value="100-goldstar">100 Goldstar - Rp. 16.000</option>
+                <option value="310-goldstar">310 Goldstar - Rp. 42.000</option>
+                <option value="520-goldstar">520 Goldstar - Rp. 67.000</option>
+                <option value="1060-goldstar">1.060 Goldstar - Rp. 130.000</option>
+                <option value="2180-goldstar">2.180 Goldstar - Rp. 262.000</option>
+            </select>
+            
+            <button type="button" onclick="sendWhatsAppMessage()">Kirim ke WhatsApp</button>
+        </form>
+        
+        <script>
+            function updateOptions() {
+                // This function updates the available options based on the selected item type.
+            }
+
+            function sendWhatsAppMessage() {
+                const idSpace = document.getElementById('id-space').value;
+                const itemType = document.getElementById('item-type').value;
+                
+                if (!idSpace || !itemType) {
+                    alert('Harap isi semua bidang.');
+                    return;
+                }
+
+                const baseUrl = 'https://wa.me/081538769551';
+                const message = `Pembelian Super Sus\n\nID Space: ${idSpace}\nItem: ${itemType}`;
+                const url = `${baseUrl}?text=${encodeURIComponent(message)}`;
+
+                window.open(url, '_blank');
+            }
+        </script>
+    </div>
+</body>
+</html>
