@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Pulsa Telkomsel</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+            width: 350px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .container img {
+            max-width: 100px;
+            margin-bottom: 20px;
+        }
+
+        h2 {
+            color: #e60012;
+            margin-bottom: 20px;
+        }
+
+        select, input[type="submit"], input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        input[type="submit"] {
+            background-color: #e60012;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #cc000f;
+        }
+
+        .category-label {
+            color: #555;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <img src="UPDATE/CODE PULSA/tsel.jpg" alt="Telkomsel Logo">
+    <h2>Pembelian Pulsa Telkomsel</h2>
+
+    <form id="pulsaForm">
+        <input type="text" id="phone" placeholder="Masukkan Nomor HP" required pattern="\d{10,13}" title="Nomor HP harus terdiri dari 10 hingga 13 angka">
+        
+        <select id="pulsa" required>
+            <option value="" disabled selected>Pilih Nominal Pulsa</option>
+            <option value="7000">Pulsa 5.000 - Rp. 7.000</option>
+            <option value="12000">Pulsa 10.000 - Rp. 12.000</option>
+            <option value="22000">Pulsa 20.000 - Rp. 22.000</option>
+            <option value="32000">Pulsa 30.000 - Rp. 32.000</option>
+            <option value="43000">Pulsa 40.000 - Rp. 43.000</option>
+            <option value="53000">Pulsa 50.000 - Rp. 53.000</option>
+            <option value="103000">Pulsa 100.000 - Rp. 103.000</option>
+        </select>
+
+        <div class="category-label">
+            Kategori: Pulsa Telkomsel
+        </div>
+
+        <input type="submit" value="Beli Sekarang">
+    </form>
+</div>
+
+<script>
+    document.getElementById('pulsaForm').addEventListener('submit', function(event) {
+        event.preventDefault();
+        var selectedPulsa = document.getElementById('pulsa').value;
+        var phoneNumber = document.getElementById('phone').value;
+        if (selectedPulsa && phoneNumber) {
+            var whatsappNumber = "6281538769551";
+            var message = "Pembelian Pulsa Telkomsel\nNominal: Rp. " + selectedPulsa + "\nKategori: Pulsa Telkomsel\nNomor HP: " + phoneNumber;
+            var whatsappUrl = "https://wa.me/" + whatsappNumber + "?text=" + encodeURIComponent(message);
+            window.open(whatsappUrl, '_blank');
+        } else {
+            alert('Harap isi semua kolom!');
+        }
+    });
+</script>
+
+</body>
+</html>

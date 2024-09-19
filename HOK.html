@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Honor of Kings</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 600px;
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .form-group select, .form-group input {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .form-group input[type="button"] {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .form-group input[type="button"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Pembelian Honor of Kings</h1>
+        <form id="purchaseForm">
+            <div class="form-group">
+                <label for="productType">Pilih Jenis Produk:</label>
+                <select id="productType" name="productType">
+                    <option value="">--Pilih--</option>
+                    <option value="membership">Membership</option>
+                    <option value="token">Token</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="product">Pilih Produk:</label>
+                <select id="product" name="product" disabled>
+                    <!-- Options will be added by JavaScript -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label for="tokenId">ID Token Game:</label>
+                <input type="text" id="tokenId" name="tokenId" required>
+            </div>
+            <div class="form-group">
+                <input type="button" value="Kirim ke WhatsApp" onclick="sendToWhatsApp()">
+            </div>
+        </form>
+        <script>
+            const membershipOptions = `
+                <option value="weeklyCard">Weekly Card - Rp. 20.000</option>
+                <option value="weeklyCardPlus">Weekly Card Plus - Rp. 45.000</option>
+            `;
+            const tokenOptions = `
+                <option value="8Token">8 Token - Rp. 3.000</option>
+                <option value="16Token">16 Token - Rp. 6.000</option>
+                <option value="23Token">23 Token - Rp. 8.000</option>
+                <option value="80Plus8Token">80+8 Token - Rp. 18.000</option>
+                <option value="240Plus17Token">240+17 Token - Rp. 47.000</option>
+                <option value="400Plus32Token">400+32 Token - Rp. 78.000</option>
+                <option value="560Plus45Token">560+45 Token - Rp. 107.000</option>
+                <option value="800Plus95Token">800+95 Token - Rp. 155.000</option>
+                <option value="1200Plus153Token">1.200+153 Token - Rp. 225.000</option>
+                <option value="2400Plus324Token">2.400+324 Token - Rp. 454.000</option>
+            `;
+            
+            document.getElementById('productType').addEventListener('change', function() {
+                const productType = this.value;
+                const productSelect = document.getElementById('product');
+                
+                if (productType === 'membership') {
+                    productSelect.innerHTML = membershipOptions;
+                } else if (productType === 'token') {
+                    productSelect.innerHTML = tokenOptions;
+                } else {
+                    productSelect.innerHTML = '';
+                }
+                
+                productSelect.disabled = !productType;
+            });
+            
+            function sendToWhatsApp() {
+                const productType = document.getElementById('productType').value;
+                const product = document.getElementById('product').value;
+                const tokenId = document.getElementById('tokenId').value;
+                
+                if (!productType || !product || !tokenId) {
+                    alert('Silakan lengkapi semua informasi.');
+                    return;
+                }
+                
+                const productName = product.split('-')[0].trim();
+                const message = `Pembelian Honor of Kings\nJenis Produk: ${productType === 'membership' ? 'Membership' : 'Token'}\nProduk: ${productName}\nID Token Game: ${tokenId}`;
+                const whatsappUrl = `https://wa.me/6281538769551?text=${encodeURIComponent(message)}`;
+                window.open(whatsappUrl, '_blank');
+            }
+        </script>
+    </div>
+</body>
+</html>

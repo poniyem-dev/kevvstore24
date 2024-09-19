@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian League of Legends</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            width: 300px;
+        }
+        h2 {
+            margin: 0 0 20px;
+            font-size: 24px;
+            color: #333;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #555;
+        }
+        select, input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        input[type="submit"] {
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            cursor: pointer;
+        }
+        input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Pembelian League of Legends</h2>
+        <form id="purchaseForm">
+            <label for="id">ID League of Legends:</label>
+            <input type="text" id="id" name="id" required>
+            
+            <label for="topup">Pilih Jumlah Diamond:</label>
+            <select id="topup" name="topup" required>
+                <option value="150" data-price="18000">150 RP - Rp. 18.000</option>
+                <option value="775" data-price="80000">775 RP - Rp. 80.000</option>
+                <option value="1400" data-price="137000">1.400 RP - Rp. 137.000</option>
+                <option value="2850" data-price="270000">2.850 RP - Rp. 270.000</option>
+            </select>
+            
+            <input type="submit" value="Kirim">
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('purchaseForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            const id = document.getElementById('id').value;
+            const topupElement = document.getElementById('topup');
+            const topupText = topupElement.options[topupElement.selectedIndex].text;
+            const price = topupElement.options[topupElement.selectedIndex].getAttribute('data-price');
+            
+            const message = `ID League of Legends: ${id}\nJumlah Diamond: ${topupText}\nHarga: Rp. ${price}`;
+            const whatsappUrl = `https://wa.me/081538769551?text=${encodeURIComponent(message)}`;
+            
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>

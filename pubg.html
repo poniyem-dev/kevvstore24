@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian UC PUBG</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+            color: #333;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #28a745;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Pembelian UC PUBG</h1>
+        <form id="ucForm">
+            <label for="pubgID">ID PUBG:</label>
+            <input type="text" id="pubgID" name="pubgID" placeholder="Masukkan ID PUBG Anda" required>
+
+            <label for="royalPass">Royal Pass (Opsional):</label>
+            <select id="royalPass" name="royalPass">
+                <option value="">--Pilih Royal Pass--</option>
+                <option value="Elite Pass Global Rp. 175.000">Elite Pass Global Rp. 175.000</option>
+                <option value="Elite Pass Plus Global Rp. 445.000">Elite Pass Plus Global Rp. 445.000</option>
+            </select>
+
+            <label for="uc">UC (Opsional):</label>
+            <select id="uc" name="uc">
+                <option value="">--Pilih UC--</option>
+                <option value="60 UC Global Rp. 19.000">60 UC Global Rp. 19.000</option>
+                <option value="325 UC Global Rp. 82.000">325 UC Global Rp. 82.000</option>
+                <option value="660 UC Global Rp. 160.000">660 UC Global Rp. 160.000</option>
+                <option value="1.800 UC Global Rp. 400.000">1.800 UC Global Rp. 400.000</option>
+                <option value="30 UC Indo Rp. 10.000">30 UC Indo Rp. 10.000</option>
+                <option value="60 UC Indo Rp. 18.000">60 UC Indo Rp. 18.000</option>
+                <option value="325 UC Indo Rp. 79.000">325 UC Indo Rp. 79.000</option>
+                <option value="660 UC Indo Rp. 154.000">660 UC Indo Rp. 154.000</option>
+                <option value="1.800 UC Indo Rp. 380.000">1.800 UC Indo Rp. 380.000</option>
+            </select>
+
+            <button type="submit">Kirim</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('ucForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const pubgID = document.getElementById('pubgID').value;
+            const royalPass = document.getElementById('royalPass').value;
+            const uc = document.getElementById('uc').value;
+
+            let message = `ID PUBG: ${pubgID}\n`;
+
+            if (royalPass !== "") {
+                message += `Royal Pass: ${royalPass}`;
+            } else if (uc !== "") {
+                message += `UC: ${uc}`;
+            } else {
+                alert('Pilih salah satu antara Royal Pass atau UC!');
+                return;
+            }
+
+            const whatsappUrl = `https://wa.me/6281538769551?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>

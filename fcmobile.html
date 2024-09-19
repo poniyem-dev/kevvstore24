@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian FC Mobile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+
+        h1 {
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+        }
+
+        input, select, button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        button {
+            background-color: #28a745;
+            color: white;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        .note {
+            font-size: 12px;
+            color: #666;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>FC Mobile Purchase</h1>
+        <form id="fcMobileForm">
+            <label for="id">ID FC Mobile:</label>
+            <input type="text" id="id" name="id" placeholder="Masukkan ID FC Mobile" required><br>
+
+            <label for="fcpoint">FC Point:</label>
+            <select id="fcpoint" name="fcpoint">
+                <option value="">--Pilih FC Point--</option>
+                <option value="40 FC Point Rp. 10.000">40 FC Point Rp. 10.000</option>
+                <option value="100 FC Point Rp. 20.000">100 FC Point Rp. 20.000</option>
+                <option value="520 FC Point Rp. 80.000">520 FC Point Rp. 80.000</option>
+                <option value="1.070 FC Point Rp. 160.000">1.070 FC Point Rp. 160.000</option>
+                <option value="2.200 FC Point Rp. 325.000">2.200 FC Point Rp. 325.000</option>
+            </select><br>
+
+            <label for="silver">Silver:</label>
+            <select id="silver" name="silver">
+                <option value="">--Pilih Silver--</option>
+                <option value="39 Silver Rp. 10.000">39 Silver Rp. 10.000</option>
+                <option value="99 Silver Rp. 20.000">99 Silver Rp. 20.000</option>
+                <option value="499 Silver Rp. 80.000">499 Silver Rp. 80.000</option>
+                <option value="999 Silver Rp. 160.000">999 Silver Rp. 160.000</option>
+                <option value="1.999 Silver Rp. 325.000">1.999 Silver Rp. 325.000</option>
+            </select><br>
+
+            <button type="submit">Kirim</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('fcMobileForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const id = document.getElementById('id').value;
+            const fcpoint = document.getElementById('fcpoint').value;
+            const silver = document.getElementById('silver').value;
+
+            let message = `ID FC Mobile: ${id}\n`;
+
+            if (fcpoint !== "") {
+                message += `Pembelian: ${fcpoint}`;
+            } else if (silver !== "") {
+                message += `Pembelian: ${silver}`;
+            } else {
+                alert('Pilih salah satu antara FC Point atau Silver!');
+                return;
+            }
+
+            const whatsappUrl = `https://wa.me/6281538769551?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+
+</body>
+</html>

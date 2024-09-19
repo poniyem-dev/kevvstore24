@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Stumble Guys</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        input, select, button {
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 16px;
+        }
+        button {
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Form Pembelian Stumble Guys</h1>
+        <form id="stumbleForm">
+            <label for="stumbleId">Nama Akun Stumble Guys:</label>
+            <input type="text" id="stumbleId" name="stumbleId" placeholder="Masukkan Nama Akun Stumble Guys" required><br>
+
+            <label for="gems">Gems (Opsional):</label>
+            <select id="gems" name="gems">
+                <option value="">--Pilih Gems--</option>
+                <option value="250 Gems Rp. 17.000">250 Gems Rp. 17.000</option>
+                <option value="800 Gems Rp. 35.000">800 Gems Rp. 35.000</option>
+                <option value="1.600 Gems + 75 Token Rp. 55.000">1.600 Gems + 75 Token Rp. 55.000</option>
+                <option value="5.000 Gems + 275 Token Rp. 130.000">5.000 Gems + 275 Token Rp. 130.000</option>
+            </select><br>
+
+            <label for="token">Token (Opsional):</label>
+            <select id="token" name="token">
+                <option value="">--Pilih Token--</option>
+                <option value="120 Token Rp. 40.000">120 Token Rp. 40.000</option>
+                <option value="1.300 Token Rp. 300.000">1.300 Token Rp. 300.000</option>
+            </select><br>
+
+            <button type="submit">Kirim</button>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById('stumbleForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            const stumbleId = document.getElementById('stumbleId').value;
+            const gems = document.getElementById('gems').value;
+            const token = document.getElementById('token').value;
+
+            let message = `ID Stumble Guys: ${stumbleId}\n`;
+
+            if (gems !== "") {
+                message += `Gems: ${gems}`;
+            } else if (token !== "") {
+                message += `Token: ${token}`;
+            } else {
+                alert('Pilih salah satu antara Gems atau Token!');
+                return;
+            }
+
+            const whatsappUrl = `https://wa.me/6281538769551?text=${encodeURIComponent(message)}`;
+            window.open(whatsappUrl, '_blank');
+        });
+    </script>
+</body>
+</html>
