@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Wallet List</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .wallet-container {
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
+            width: 300px;
+            padding: 20px;
+        }
+
+        .wallet-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .wallet-list {
+            list-style: none;
+            padding: 0;
+        }
+
+        .wallet-list li {
+            background-color: #0000ff;
+            color: white;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            text-align: center;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .wallet-list li:hover {
+            background-color: #0056b3;
+        }
+
+        .wallet-list li a {
+            color: white;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="wallet-container">
+        <h2>Pilih Provider Anda</h2>
+        <ul class="wallet-list">
+            <li><a href="tsel.html">Telkomsel</a></li>
+            <li><a href="smart.html">Smartfren</a></li>
+            <li><a href="indosat.html">Indosat</a></li>
+            <li><a href="xl.html">XL Axiata</a></li>
+            <li><a href="tri.html">Tri</a></li>
+            <li><a href="axis.html">Axis</a></li>
+            <h2>PULSA PLN</h2>
+            <li><a href="pln.html">Pilih Pulsa Pln</a></li>
+        </ul>
+    </div>
+
+</body>
+</html>

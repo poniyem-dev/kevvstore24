@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelian Pulsa</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .logo img {
+            width: 100px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"],
+        select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="logo">
+            <img src="axis.jpg" a>
+        </div>
+        <h1>Pembelian Pulsa AXIS</h1>
+        <form id="pulsaForm">
+            <label for="nomor">Nomor HP</label>
+            <input type="text" id="nomor" name="nomor" placeholder="Masukkan nomor HP" required>
+
+            <label for="nominal">Pilih Nominal Pulsa</label>
+            <select id="nominal" name="nominal">
+                <option value="5000">Pulsa 5.000 - Rp. 7.000</option>
+                <option value="10000">Pulsa 10.000 - Rp. 12.000</option>
+                <option value="20000">Pulsa 20.000 - Rp. 22.000</option>
+                <option value="30000">Pulsa 30.000 - Rp. 32.000</option>
+                <option value="50000">Pulsa 50.000 - Rp. 53.000</option>
+                <option value="100000">Pulsa 100.000 - Rp. 103.000</option>
+            </select>
+
+            <button type="button" onclick="kirimWhatsApp()">Beli Sekarang</button>
+        </form>
+    </div>
+
+    <script>
+        function kirimWhatsApp() {
+            var nomor = document.getElementById("nomor").value;
+            var nominal = document.getElementById("nominal").value;
+            var nominalText = document.getElementById("nominal").options[document.getElementById("nominal").selectedIndex].text;
+            var url = "https://wa.me/6281538769551?text=" 
+                      + encodeURIComponent("Kategori: PULSA AXIS\nNomor HP: " + nomor + "\nNominal: " + nominalText);
+
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>

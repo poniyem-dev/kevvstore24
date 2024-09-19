@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelian PLN</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 500px;
+            margin: 50px auto;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .container img {
+            display: block;
+            margin: 0 auto 20px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        select, input[type="text"] {
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-size: 16px;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            background-color: #4CAF50;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="pln.jpg" alt="Logo" width="100">
+        <h2>Form Pembelian Token PLN</h2>
+        <form id="plnForm">
+            <label for="nominal">Pilih Nominal:</label>
+            <select id="nominal" required>
+                <option value="23000">Token PLN 20.000 - Rp. 23.000</option>
+                <option value="54000">Token PLN 50.000 - Rp. 54.000</option>
+                <option value="104000">Token PLN 100.000 - Rp. 104.000</option>
+                <option value="204000">Token PLN 200.000 - Rp. 204.000</option>
+            </select>
+
+            <label for="tokenPln">Nomor Token PLN:</label>
+            <input type="text" id="tokenPln" placeholder="Masukkan nomor Token PLN" required>
+
+            <button type="button" onclick="kirimPesan()">Beli Sekarang</button>
+        </form>
+    </div>
+
+    <script>
+        function kirimPesan() {
+            var nominal = document.getElementById("nominal").value;
+            var tokenPln = document.getElementById("tokenPln").value;
+
+            if (tokenPln && nominal) {
+                var message = 'Kategori PLN%0ANominal: Rp. ' + nominal + '%0ANomor Token PLN: ' + tokenPln;
+
+                var url = 'https://api.whatsapp.com/send?phone=6281538769551&text=' + message;
+                window.open(url, '_blank');
+            } else {
+                alert('Silakan lengkapi semua data!');
+            }
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form Pembelian Pulsa Indosat</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            width: 350px;
+        }
+
+        h2 {
+            text-align: center;
+            color: #4CAF50;
+        }
+
+        img {
+            display: block;
+            margin: 0 auto 15px;
+            max-width: 100px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <img src="sat.jpg" alt="Indosat Logo">
+        <h2>Form Pembelian Pulsa IM3</h2>
+        <form id="pulsaForm">
+            <label for="nomorHp">Nomor HP</label>
+            <input type="text" id="nomorHp" placeholder="Masukkan nomor HP Anda" required>
+
+            <label for="hargaPulsa">Pilih Harga Pulsa</label>
+            <select id="hargaPulsa" required>
+                <option value="">--Pilih Harga Pulsa--</option>
+                <option value="Pulsa 5.000 Rp. 7.000">Pulsa 5.000 Rp. 7.000</option>
+                <option value="Pulsa 10.000 Rp. 12.000">Pulsa 10.000 Rp. 12.000</option>
+                <option value="Pulsa 20.000 Rp. 22.000">Pulsa 20.000 Rp. 22.000</option>
+                <option value="Pulsa 30.000 Rp. 32.000">Pulsa 30.000 Rp. 32.000</option>
+                <option value="Pulsa 40.000 Rp. 43.000">Pulsa 40.000 Rp. 43.000</option>
+                <option value="Pulsa 50.000 Rp. 53.000">Pulsa 50.000 Rp. 53.000</option>
+                <option value="Pulsa 100.000 Rp. 103.000">Pulsa 100.000 Rp. 103.000</option>
+            </select>
+
+            <button type="button" onclick="kirimPesan()">Beli Pulsa</button>
+        </form>
+    </div>
+
+    <script>
+        function kirimPesan() {
+            const nomorHp = document.getElementById('nomorHp').value;
+            const hargaPulsa = document.getElementById('hargaPulsa').value;
+
+            if(nomorHp === "" || hargaPulsa === "") {
+                alert("Silakan isi semua form.");
+                return;
+            }
+
+            const kategori = "Pulsa INDOSAT";
+            const nomorWa = "6281538769551";
+            const pesan = `Saya ingin membeli ${hargaPulsa} (${kategori}) untuk nomor ${nomorHp}`;
+
+            const url = `https://api.whatsapp.com/send?phone=${nomorWa}&text=${encodeURIComponent(pesan)}`;
+            window.open(url, '_blank');
+        }
+    </script>
+</body>
+</html>
