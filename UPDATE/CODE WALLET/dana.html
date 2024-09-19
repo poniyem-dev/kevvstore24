@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelian E-Wallet DANA</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+        }
+
+        .container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .container img {
+            display: block;
+            margin: 0 auto 20px auto;
+            width: 100px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: bold;
+        }
+
+        select, input[type="text"], button {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="dana.jpeg" alt="Logo DANA">
+        <h2>Pembelian E-Wallet DANA</h2>
+        
+        <form id="purchaseForm">
+            <label for="nominal">Nominal Pembelian:</label>
+            <select id="nominal" name="nominal">
+                <option value="8000">Dana 5.000 - Rp. 8.000</option>
+                <option value="13000">Dana 10.000 - Rp. 13.000</option>
+                <option value="23000">Dana 20.000 - Rp. 23.000</option>
+                <option value="29000">Dana 25.000 - Rp. 29.000</option>
+                <option value="54000">Dana 50.000 - Rp. 54.000</option>
+                <option value="105000">Dana 100.000 - Rp. 105.000</option>
+            </select>
+
+            <label for="phone">Nomor HP:</label>
+            <input type="text" id="phone" name="phone" placeholder="Masukkan nomor HP">
+
+            <button type="button" onclick="sendWhatsApp()">Kirim Pesanan</button>
+        </form>
+    </div>
+
+    <script>
+        function sendWhatsApp() {
+            const nominal = document.getElementById('nominal').value;
+            const phone = document.getElementById('phone').value;
+            const whatsappNumber = '6281538769551';
+            const message = `Pembelian E-Wallet DANA\nNominal: Rp ${nominal}\nNomor HP: ${phone}`;
+
+            const whatsappURL = `https://api.whatsapp.com/send?phone=${whatsappNumber}&text=${encodeURIComponent(message)}`;
+
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pembelian ShopeePay</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f2f2f2;
+            margin: 0;
+            padding: 0;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        h1 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .logo {
+            width: 100px;
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-size: 14px;
+            margin-bottom: 5px;
+            display: block;
+        }
+
+        input[type="number"], select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+
+        button {
+            background-color: #ff5722;
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #e64a19;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <img src="spay.png" alt="ShopeePay Logo" class="logo">
+        <h1>Pembelian ShopeePay</h1>
+
+        <form action="https://api.whatsapp.com/send" method="get">
+            <input type="hidden" name="phone" value="6281538769551">
+            <input type="hidden" name="text" id="waMessage">
+
+            <label for="nomorHp">Nomor HP:</label>
+            <input type="number" id="nomorHp" name="nomorHp" placeholder="Masukkan Nomor HP" required>
+
+            <label for="nominal">Pilih Nominal ShopeePay:</label>
+            <select id="nominal" name="nominal">
+                <option value="5.000">ShopeePay 5.000 - Rp. 8.000</option>
+                <option value="10.000">ShopeePay 10.000 - Rp. 13.000</option>
+                <option value="20.000">ShopeePay 20.000 - Rp. 23.000</option>
+                <option value="25.000">ShopeePay 25.000 - Rp. 29.000</option>
+                <option value="30.000">ShopeePay 30.000 - Rp. 34.000</option>
+                <option value="50.000">ShopeePay 50.000 - Rp. 54.000</option>
+                <option value="100.000">ShopeePay 100.000 - Rp. 105.000</option>
+            </select>
+
+            <button type="button" onclick="sendToWhatsApp()">Kirim ke WhatsApp</button>
+        </form>
+    </div>
+
+    <script>
+        function sendToWhatsApp() {
+            var nomorHp = document.getElementById("nomorHp").value;
+            var nominal = document.getElementById("nominal").value;
+            var message = "Kategori: SHOPEE PAY\nNomor HP: " + nomorHp + "\nNominal: " + nominal;
+            document.getElementById("waMessage").value = message;
+            document.forms[0].submit();
+        }
+    </script>
+</body>
+</html>
